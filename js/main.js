@@ -154,17 +154,41 @@ document.addEventListener('DOMContentLoaded', () => {
     rsvpForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        // Get the submit button and set it to a loading state
+        const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+
         const formData = new FormData(rsvpForm);
         const data = Object.fromEntries(formData.entries());
         data.timestamp = new Date().toISOString();
 
-        // Store in localStorage
-        const existing = JSON.parse(localStorage.getItem('rsvp_responses') || '[]');
-        existing.push(data);
-        localStorage.setItem('rsvp_responses', JSON.stringify(existing));
+        // Google Apps Script Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby0jK9B_KGjkJNUGVJJ8scyn_uayz6EJbh9YfSb7cFc_4wbEbWmKPnLo7ENlKM8cQmy/exec';
 
-        // Show success message
-        rsvpForm.style.display = 'none';
-        rsvpSuccess.style.display = 'block';
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // no-cors is required for Google Apps Script
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            // Convert data object to URL encoded string
+            body: new URLSearchParams(data).toString()
+        })
+            .then(() => {
+                // Show success message
+                rsvpForm.reset();
+                rsvpForm.style.display = 'none';
+                rsvpSuccess.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            });
     });
 });
