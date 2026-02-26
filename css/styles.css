@@ -740,9 +740,9 @@ button {
 
 .bus__leaf {
   position: absolute;
-  width: clamp(100px, 16vw, 240px);
+  width: clamp(130px, 17vw, 250px);
   pointer-events: none;
-  opacity: .35;
+  opacity: .95;
   mix-blend-mode: luminosity;
   filter: brightness(0.7);
 }
