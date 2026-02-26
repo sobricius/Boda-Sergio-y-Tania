@@ -31,15 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.add('visible');
             musicToggle.classList.add('visible');
 
+            // Scroll to Hero section
+            const hero = document.getElementById('INICIO');
+            if (hero) hero.scrollIntoView({ behavior: 'smooth' });
+
             // Attempt to play music
             bgMusic.play().catch(() => {
                 iconPause.style.display = 'none';
                 iconPlay.style.display = 'block';
             });
-        }, 1800);
+        }, 1000);
 
         // 3. Remove splash from DOM after all transitions complete
-        setTimeout(() => { splash.style.display = 'none'; }, 3500);
+        setTimeout(() => { splash.style.display = 'none'; }, 2000);
     });
 
     /* ================================================

@@ -113,7 +113,7 @@ button {
   align-items: center;
   justify-content: center;
   background: var(--color-bg-light) url('../assets/images/papel.png') repeat center / 600px;
-  transition: opacity 1s ease 1.2s, visibility 1s ease 1.2s;
+  transition: opacity .6s ease .6s, visibility .6s ease .6s;
 }
 
 .splash.hidden {
@@ -176,7 +176,7 @@ button {
   z-index: 3;
   transform-origin: top center;
   transform-style: preserve-3d;
-  transition: transform 1.4s cubic-bezier(.4, 0, .2, 1);
+  transition: transform .8s cubic-bezier(.4, 0, .2, 1);
 }
 
 /* Triangle shape */
@@ -228,8 +228,8 @@ button {
   justify-content: flex-start;
   padding: 190px 30px 30px;
   text-align: center;
-  transition: transform 1.2s cubic-bezier(.4, 0, .2, 1) .6s,
-    opacity .8s ease .6s;
+  transition: transform .7s cubic-bezier(.4, 0, .2, 1) .3s,
+    opacity .5s ease .3s;
 }
 
 /* Card slides up when envelope opens */
@@ -383,7 +383,16 @@ button {
   align-items: center;
   justify-content: center;
   padding: calc(var(--navbar-h) + 40px) 20px 60px;
-  overflow: hidden;
+  overflow-x: clip;
+}
+
+/* Couple photo below the title */
+.hero__photo {
+  max-width: clamp(320px, 50vw, 550px);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, .12);
+  margin: 0 auto 1.5rem;
+  display: block;
 }
 
 .hero__leaf {
@@ -1069,7 +1078,39 @@ button {
   }
 
   .hero__leaf {
-    width: clamp(80px, 30vw, 160px);
+    width: clamp(90px, 26vw, 150px);
+  }
+
+  .hero__leaf--tl {
+    top: var(--navbar-h);
+    left: -10px;
+  }
+
+  .hero__leaf--tr {
+    top: var(--navbar-h);
+    right: -10px;
+  }
+
+  .hero__leaf--bl {
+    bottom: 20px;
+    left: -10px;
+  }
+
+  .hero__leaf--br {
+    bottom: 20px;
+    right: -10px;
+  }
+
+  .music-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .music-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .venues {
@@ -1154,5 +1195,41 @@ button {
 
   .hero__date-num {
     font-size: 3rem;
+  }
+
+  .hero__leaf {
+    width: clamp(65px, 18vw, 100px);
+  }
+
+  .hero__leaf--tl {
+    top: calc(var(--navbar-h) + 10px);
+    left: -5px;
+  }
+
+  .hero__leaf--tr {
+    top: calc(var(--navbar-h) + 10px);
+    right: -5px;
+  }
+
+  .hero__leaf--bl {
+    bottom: 30px;
+    left: -5px;
+  }
+
+  .hero__leaf--br {
+    bottom: 30px;
+    right: -5px;
+  }
+
+  .music-toggle {
+    bottom: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .music-icon {
+    width: 14px;
+    height: 14px;
   }
 }
