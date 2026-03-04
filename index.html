@@ -1,426 +1,532 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tania & Sergio — Nuestra Boda</title>
-  <meta name="description" content="Invitación de boda de Tania y Sergio. 31 de Julio de 2027.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tania & Sergio — Nuestra Boda</title>
+    <meta name="description" content="Invitación de boda de Tania y Sergio. 31 de Julio de 2027." />
 
-  <!-- Google Fonts (only for Playfair Display fallback & Quicksand) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@400;500;600&display=swap"
-    rel="stylesheet">
+    <!-- Google Fonts (only for Playfair Display fallback & Quicksand) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@400;500;600&display=swap"
+        rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
+    <!-- ===================== SPLASH SCREEN ===================== -->
+    <div id="splash" class="splash">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <!-- Prompt text -->
+            <p class="envelope__prompt" id="envelopePrompt">Toca para abrir</p>
 
-  <!-- ===================== SPLASH SCREEN ===================== -->
-  <div id="splash" class="splash">
-    <div class="envelope" id="envelope">
-      <!-- Envelope flap (triangle on top) -->
-      <div class="envelope__flap"></div>
-      <!-- Envelope body -->
-      <div class="envelope__body">
-        <!-- Card / Letter inside -->
-        <div class="envelope__card" id="envelopeCard">
-          <p class="splash__subtitle">BIENVENIDOS A NUESTRA BODA</p>
-          <p class="splash__names">Tania & Sergio</p>
-          <button class="splash__btn" id="enterBtn">ENTRAR</button>
+            <div class="envelope" id="envelope">
+                <!-- 1. Back panel of the envelope (lowest layer) -->
+                <div class="envelope__back"></div>
+
+                <!-- 2. Letter / Paper (between back and front) -->
+                <div class="envelope__letter" id="envelopeLetter">
+                    <div class="envelope__letter-inner">
+                        <p class="splash__subtitle">BIENVENIDOS A NUESTRA BODA</p>
+                        <p class="splash__names">Tania & Sergio</p>
+                        <button class="splash__btn" id="enterBtn">ENTRAR</button>
+                    </div>
+                </div>
+
+                <!-- 3. Front body of the envelope (V-fold, covers letter) -->
+                <div class="envelope__front"></div>
+
+                <!-- 4. Flap (triangle on top, highest layer) with wax seal -->
+                <div class="envelope__flap">
+                    <div class="envelope__seal">
+                        <svg viewBox="0 0 60 60" width="50" height="50">
+                            <circle cx="30" cy="30" r="26" fill="#8b2020" />
+                            <circle cx="30" cy="30" r="22" fill="none" stroke="#a03030" stroke-width="1.5" />
+                            <text x="30" y="35" text-anchor="middle" font-family="'Bon Vivant Serif', serif"
+                                font-size="18" fill="#d4a373" letter-spacing="1">T&S</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <!-- ===================== MUSIC TOGGLE ===================== -->
-  <button class="music-toggle" id="musicToggle" aria-label="Pausar música">
-    <svg class="music-icon music-icon--pause" id="iconPause" viewBox="0 0 24 24" fill="currentColor">
-      <rect x="6" y="4" width="4" height="16" />
-      <rect x="14" y="4" width="4" height="16" />
-    </svg>
-    <svg class="music-icon music-icon--play" id="iconPlay" viewBox="0 0 24 24" fill="currentColor" style="display:none">
-      <polygon points="5,3 19,12 5,21" />
-    </svg>
-  </button>
-  <audio id="bgMusic" loop preload="auto">
-    <source src="assets/music/Hollow Knight_ Silksong - Choral Chambers [bAkx5aHyDUI].mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- ===================== NAVBAR ===================== -->
-  <nav class="navbar" id="navbar">
-    <a href="#INICIO" class="navbar__logo">TANIA & SERGIO</a>
-    <div class="navbar__menu" id="navMenu">
-      <a href="#eldia" class="navbar__link" data-section="eldia">EL DÍA</a>
-      <a href="#comollegar" class="navbar__link" data-section="comollegar">CÓMO LLEGAR</a>
-      <a href="#autobus" class="navbar__link" data-section="autobus">AUTOBÚS</a>
-      <a href="#rsvp" class="navbar__link" data-section="rsvp">RSVP</a>
-      <a href="#datos" class="navbar__link" data-section="datos">DATOS DE INTERÉS</a>
-    </div>
-    <button class="navbar__hamburger" id="navHamburger" aria-label="Menú">
-      <span></span><span></span><span></span>
+    <!-- ===================== MUSIC TOGGLE ===================== -->
+    <button class="music-toggle" id="musicToggle" aria-label="Pausar música">
+        <svg class="music-icon music-icon--pause" id="iconPause" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" />
+            <rect x="14" y="4" width="4" height="16" />
+        </svg>
+        <svg class="music-icon music-icon--play" id="iconPlay" viewBox="0 0 24 24" fill="currentColor"
+            style="display: none">
+            <polygon points="5,3 19,12 5,21" />
+        </svg>
     </button>
-  </nav>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music/Hollow Knight_ Silksong - Choral Chambers [bAkx5aHyDUI].mp3" type="audio/mpeg" />
+    </audio>
 
-  <!-- ===================== MAIN CONTENT ===================== -->
-  <main id="mainContent" class="main-content">
-
-    <!-- HERO SECTION -->
-    <section class="hero" id="INICIO">
-      <img src="assets/images/leaf-left-1.png" alt="" class="hero__leaf hero__leaf--tl" aria-hidden="true">
-      <img src="assets/images/leaf-right-2.png" alt="" class="hero__leaf hero__leaf--tr" aria-hidden="true">
-      <img src="assets/images/leaf-left-2.png" alt="" class="hero__leaf hero__leaf--bl" aria-hidden="true">
-      <img src="assets/images/leaf-right-1.png" alt="" class="hero__leaf hero__leaf--br" aria-hidden="true">
-
-      <div class="hero__content anim" data-anim="fadeInUp">
-        <h1 class="hero__title">¡Nos casamos!</h1>
-        <img src="assets/images/IMG-20240602-WA0036.jpg" alt="Tania y Sergio" class="hero__photo">
-        <p class="hero__text">Hay momentos que son especiales por sí solos, pero compartirlos con las personas que
-          quieres, los hace inolvidables.</p>
-        <p class="hero__text">Lo más importante para que esta sea la boda del año y el mejor día de nuestras vidas, es
-          que tú nos acompañes.</p>
-
-        <div class="hero__date">
-          <span class="hero__date-num">31</span>
-          <span class="hero__date-num">07</span>
-          <span class="hero__date-num">2027</span>
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar" id="navbar">
+        <a href="#INICIO" class="navbar__logo">TANIA & SERGIO</a>
+        <div class="navbar__menu" id="navMenu">
+            <a href="#eldia" class="navbar__link" data-section="eldia">EL DÍA</a>
+            <a href="#comollegar" class="navbar__link" data-section="comollegar">CÓMO LLEGAR</a>
+            <a href="#autobus" class="navbar__link" data-section="autobus">AUTOBÚS</a>
+            <a href="#rsvp" class="navbar__link" data-section="rsvp">RSVP</a>
+            <a href="#datos" class="navbar__link" data-section="datos">DATOS DE INTERÉS</a>
         </div>
+        <button class="navbar__hamburger" id="navHamburger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
 
-        <div class="hero__calendar-btns">
-          <a href="data:text/calendar;charset=utf8;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KQkVHSU46VkVWRU5UDQpVSUQ6Ym9kYXRhbmlhc2VyZ2lvMjAyNw0KU1VNTUFSWTpCb2RhIFRhbmlhICYgU2VyZ2lvDQpEVFNUQVJUO1RaSUQ9RXVyb3BlL01hZHJpZDoyMDI3MDczMVQxMjAwMDANCkRURU5EO1RaSUQ9RXVyb3BlL01hZHJpZDoyMDI3MDczMVQyMzU5MDANCkRFU0NSSVBUSU9OOkJvZGEgZGUgVGFuaWEgeSBTZXJnaW8NCkxPQ0FUSU9OOklnbGVzaWEgZGUgU2FuIEZyb2lsYW4sIEx1Z28NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVI="
-            download="boda-tania-sergio.ics" class="btn btn--outline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            IOS
-          </a>
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20270731T100000Z/20270731T215900Z&text=Boda+Tania+%26+Sergio&details=Boda+de+Tania+y+Sergio&location=Iglesia+de+San+Froilan%2C+Lugo"
-            target="_blank" rel="noopener" class="btn btn--outline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            Google
-          </a>
-        </div>
-      </div>
-    </section>
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="mainContent" class="main-content">
+        <!-- HERO SECTION -->
+        <section class="hero" id="INICIO">
+            <img src="assets/images/leaf-left-1.png" alt="" class="hero__leaf hero__leaf--tl" aria-hidden="true" />
+            <img src="assets/images/leaf-right-2.png" alt="" class="hero__leaf hero__leaf--tr" aria-hidden="true" />
+            <img src="assets/images/leaf-left-2.png" alt="" class="hero__leaf hero__leaf--bl" aria-hidden="true" />
+            <img src="assets/images/leaf-right-1.png" alt="" class="hero__leaf hero__leaf--br" aria-hidden="true" />
 
-    <!-- COUNTDOWN -->
-    <section class="countdown anim" data-anim="fadeInUp" id="countdown">
-      <img src="assets/images/eucalyptus-arch.png" alt="" class="countdown__arch" aria-hidden="true">
-      <div class="countdown__item">
-        <span class="countdown__number" id="cdDays">000</span>
-        <span class="countdown__label">Días</span>
-      </div>
-      <div class="countdown__item">
-        <span class="countdown__number" id="cdHours">00</span>
-        <span class="countdown__label">Horas</span>
-      </div>
-      <div class="countdown__item">
-        <span class="countdown__number" id="cdMins">00</span>
-        <span class="countdown__label">Minutos</span>
-      </div>
-      <div class="countdown__item">
-        <span class="countdown__number" id="cdSecs">00</span>
-        <span class="countdown__label">Segundos</span>
-      </div>
-    </section>
+            <div class="hero__content anim" data-anim="fadeInUp">
+                <h1 class="hero__title">¡Nos casamos!</h1>
+                <img src="assets/images/IMG-20240602-WA0036.jpg" alt="Tania y Sergio" class="hero__photo" />
+                <p class="hero__text">
+                    Hay momentos que son especiales por sí solos, pero
+                    compartirlos con las personas que quieres, los hace
+                    inolvidables.
+                </p>
+                <p class="hero__text">
+                    Lo más importante para que esta sea la boda del año y el
+                    mejor día de nuestras vidas, es que tú nos acompañes.
+                </p>
 
-    <!-- EL DÍA / TIMELINE -->
-    <section class="timeline" id="eldia">
-      <h2 class="section-title script anim" data-anim="fadeInUp">Timeline</h2>
-      <div class="timeline__grid anim" data-anim="fadeInUp">
-        <div class="timeline__event">
-          <svg class="timeline__icon" viewBox="0 0 64 64">
-            <path d="M32 8 C32 8 20 18 20 30 C20 38 25 44 32 48 C39 44 44 38 44 30 C44 18 32 8 32 8Z" fill="none"
-              stroke="currentColor" stroke-width="1.5" />
-            <line x1="32" y1="48" x2="32" y2="58" stroke="currentColor" stroke-width="1.5" />
-            <line x1="26" y1="22" x2="32" y2="16" stroke="currentColor" stroke-width="1" />
-            <line x1="38" y1="22" x2="32" y2="16" stroke="currentColor" stroke-width="1" />
-          </svg>
-          <span class="timeline__label">Bienvenida | 13:00 H</span>
-        </div>
-        <div class="timeline__event">
-          <svg class="timeline__icon" viewBox="0 0 64 64">
-            <circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="32" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="1.5" />
-          </svg>
-          <span class="timeline__label">Ceremonia | 14:00 H</span>
-        </div>
-        <div class="timeline__event">
-          <svg class="timeline__icon" viewBox="0 0 64 64">
-            <path d="M20 38 L24 20 L32 28 L40 20 L44 38Z" fill="none" stroke="currentColor" stroke-width="1.5" />
-            <line x1="18" y1="38" x2="46" y2="38" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="44" cy="14" r="4" fill="currentColor" opacity="0.3" />
-            <line x1="44" y1="18" x2="44" y2="22" stroke="currentColor" stroke-width="1" />
-          </svg>
-          <span class="timeline__label">Cocktail | 15:30 H</span>
-        </div>
-        <div class="timeline__event">
-          <svg class="timeline__icon" viewBox="0 0 64 64">
-            <line x1="24" y1="16" x2="24" y2="48" stroke="currentColor" stroke-width="1.5" />
-            <line x1="32" y1="16" x2="32" y2="48" stroke="currentColor" stroke-width="1.5" />
-            <line x1="40" y1="16" x2="40" y2="48" stroke="currentColor" stroke-width="1.5" />
-            <path d="M20 48 Q32 56 44 48" fill="none" stroke="currentColor" stroke-width="1.5" />
-          </svg>
-          <span class="timeline__label">Comida | 17:30 H</span>
-        </div>
-        <div class="timeline__event">
-          <svg class="timeline__icon" viewBox="0 0 64 64">
-            <path d="M20 44 Q24 28 32 24 Q40 28 44 44" fill="none" stroke="currentColor" stroke-width="1.5" />
-            <line x1="32" y1="24" x2="32" y2="16" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="32" cy="14" r="2" fill="currentColor" />
-            <path d="M24 18 L20 14" stroke="currentColor" stroke-width="1" />
-            <path d="M40 18 L44 14" stroke="currentColor" stroke-width="1" />
-          </svg>
-          <span class="timeline__label">Fiesta | 3:00 H</span>
-        </div>
-      </div>
-    </section>
+                <div class="hero__date">
+                    <span class="hero__date-num">31</span>
+                    <span class="hero__date-num">07</span>
+                    <span class="hero__date-num">2027</span>
+                </div>
 
-    <!-- CÓMO LLEGAR -->
-    <section class="venues" id="comollegar" style="flex-direction: column; align-items: center; gap: 80px;">
-      <h2 class="section-title script anim" data-anim="fadeInUp">Cómo llegar</h2>
-
-      <!-- CEREMONIA -->
-      <div class="venue venue--single venue--reverse">
-        <div class="venue__image-wrap anim" data-anim="fadeInUp">
-          <img src="assets/images/7-1.png" alt="Iglesia de San Froilán" class="venue__image"
-            style="max-height: 220px; object-fit: cover;">
-        </div>
-        <div class="venue__details"
-          style="flex-direction: row; align-items: center; gap: 40px; justify-content: center; flex-wrap: wrap;">
-          <div class="venue__name-wrap" style="text-align: right;">
-            <img src="assets/images/leaf-left-2.png" alt="" class="venue__leaf" aria-hidden="true" style="top: -20px;">
-            <h3 class="venue__name script anim" data-anim="fadeInUp">San Froilán</h3>
-          </div>
-          <div class="venue__info anim" data-anim="fadeInUp"
-            style="border-left: 1px solid var(--color-border); padding-left: 40px;">
-            <p class="venue__time">12:00 H</p>
-            <p class="venue__type">CEREMONIA</p>
-            <p class="venue__city">Iglesia de San Froilán<br>Lugo</p>
-            <a href="https://www.google.es/maps/place/Iglesia+de+San+Froil%C3%A1n/@43.0139836,-7.56054,17z/data=!3m2!4b1!5s0xd31ce8fc4d12d13:0x33b449d441e482bc!4m6!3m5!1s0xd31ce8fc4c75aa5:0x9481617946317034!8m2!3d43.0139797!4d-7.5579651!16s%2Fg%2F11ckvw2sfg?entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener" class="btn btn--outline" style="margin-top: 10px;">Cómo llegar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CELEBRACIÓN -->
-      <div class="venue venue--single">
-        <div class="venue__image-wrap anim" data-anim="fadeInUp">
-          <img src="assets/images/AFERVENZA-ENTORNO2-79.jpg" alt="A Fervenza — Entorno" class="venue__image">
-        </div>
-        <div class="venue__details"
-          style="flex-direction: row; align-items: center; gap: 40px; justify-content: center; flex-wrap: wrap;">
-          <div class="venue__name-wrap" style="text-align: right;">
-            <img src="assets/images/leaf-right-2.png" alt="" class="venue__leaf" aria-hidden="true"
-              style="left: auto; right: -30px; transform: scaleX(-1); top: -20px;">
-            <h3 class="venue__name script anim" data-anim="fadeInUp">A Fervenza</h3>
-          </div>
-          <div class="venue__info anim" data-anim="fadeInUp"
-            style="border-left: 1px solid var(--color-border); padding-left: 40px;">
-            <p class="venue__time">14:00 H</p>
-            <p class="venue__type">CELEBRACIÓN</p>
-            <p class="venue__city">A Fervenza Casa Grande<br>O Corgo, Lugo</p>
-            <a href="https://www.google.com/maps/place/Fervenza+Casa+Grande+%26+Restaurante/@42.888359,-7.52166,14z/data=!4m9!3m8!1s0xd30347e238205bd:0xe6f9f84b7cbac85f!5m2!4m1!1i2!8m2!3d42.8883751!4d-7.5216375!16s%2Fg%2F1tf726sj?hl=es&entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener" class="btn btn--outline" style="margin-top: 10px;">Cómo llegar</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AUTOBÚS -->
-    <section class="bus" id="autobus">
-      <img
-        src="assets/images/Download_premium_png_of_PNG_Flowers_illustration_botanical_white__by_Aew_about_gypsophila_flowers__water_colored_png__gypsophila_png__gypsophila_png_transparent__and_white_water_fl.png"
-        alt="" class="bus__leaf bus__leaf--left" aria-hidden="true">
-      <img src="assets/images/asdasda-removebg-preview.png" alt="" class="bus__leaf bus__leaf--right"
-        aria-hidden="true">
-      <div class="bus__content anim" data-anim="fadeInUp">
-        <h2 class="section-title script light">Autobús</h2>
-        <p class="bus__text">Si crees que vas a hacer uso del autobús, apúntate en el formulario de confirmación de
-          asistencia.</p>
-        <p class="bus__text">Se informará de los horarios y paradas del autobús unas semanas antes del día de la boda en
-          este mismo espacio.</p>
-      </div>
-    </section>
-
-    <!-- RSVP -->
-    <section class="rsvp" id="rsvp">
-      <img src="assets/images/jpgdfsdf-removebg-preview.png" alt="" class="rsvp__leaf rsvp__leaf--right"
-        aria-hidden="true">
-      <img
-        src="assets/images/Download_premium_png_of_PNG_Real_Pressed_a_Gypsophila_flower_blossom_plant__by_Tong_about_gypsophila_png__gypsophila_flowers__gypsophila__cotton_branch__and_gypsophila_flower_leaf_.png"
-        alt="" class="rsvp__leaf rsvp__leaf--left" aria-hidden="true">
-
-      <div class="rsvp__card anim" data-anim="fadeInUp">
-        <h2 class="rsvp__heading">RSVP</h2>
-        <h3 class="rsvp__title script">Confirma tu asistencia</h3>
-        <div class="rsvp__instructions">
-          <p><em>Por favor responde correctamente.</em></p>
-          <p><em>Las preguntas son unipersonales excepto cuando lo indica.</em></p>
-          <p><em>Confirma tu asistencia lo antes posible o hasta el:</em></p>
-          <p><strong>15 de Julio de 2027.</strong></p>
-          <p><em>Muchas gracias.</em></p>
-        </div>
-        <p class="rsvp__highlight">Haz «click en Sí» en las preguntas Sí/No para que se desplieguen todas las preguntas
-          sobre dietas, intolerancias, acompañante y niños.</p>
-
-        <form class="rsvp__form" id="rsvpForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="nombre">Nombre y Apellidos <span class="required">*</span></label>
-              <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellidos" required>
+                <div class="hero__calendar-btns">
+                    <a href="data:text/calendar;charset=utf8;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KQkVHSU46VkVWRU5UDQpVSUQ6Ym9kYXRhbmlhc2VyZ2lvMjAyNw0KU1VNTUFSWTpCb2RhIFRhbmlhICYgU2VyZ2lvDQpEVFNUQVJUO1RaSUQ9RXVyb3BlL01hZHJpZDoyMDI3MDczMVQxMjAwMDANCkRURU5EO1RaSUQ9RXVyb3BlL01hZHJpZDoyMDI3MDczMVQyMzU5MDANCkRFU0NSSVBUSU9OOkJvZGEgZGUgVGFuaWEgeSBTZXJnaW8NCkxPQ0FUSU9OOklnbGVzaWEgZGUgU2FuIEZyb2lsYW4sIEx1Z28NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVI="
+                        download="boda-tania-sergio.ics" class="btn btn--outline">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        IOS
+                    </a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20270731T100000Z/20270731T215900Z&text=Boda+Tania+%26+Sergio&details=Boda+de+Tania+y+Sergio&location=Iglesia+de+San+Froilan%2C+Lugo"
+                        target="_blank" rel="noopener" class="btn btn--outline">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        Google
+                    </a>
+                </div>
             </div>
-            <div class="form-group">
-              <label>Confirma asistencia <span class="required">*</span></label>
-              <div class="radio-group">
-                <label class="radio-label"><input type="radio" name="asistencia" value="si" required> Sí,
-                  confirmo!</label>
-                <label class="radio-label"><input type="radio" name="asistencia" value="no"> No puedo</label>
-              </div>
+        </section>
+
+        <!-- COUNTDOWN -->
+        <section class="countdown anim" data-anim="fadeInUp" id="countdown">
+            <img src="assets/images/eucalyptus-arch.png" alt="" class="countdown__arch" aria-hidden="true" />
+            <div class="countdown__item">
+                <span class="countdown__number" id="cdDays">000</span>
+                <span class="countdown__label">Días</span>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="libro">Libro de firmas</label>
-            <textarea id="libro" name="libro" placeholder="Si lo deseas, puedes escribirnos un mensaje."
-              rows="4"></textarea>
-          </div>
-          <button type="submit" class="btn btn--submit">Enviar</button>
-        </form>
-        <div class="rsvp__success" id="rsvpSuccess" style="display:none;">
-          <p class="script" style="font-size:2rem;color:var(--color-primary);">¡Gracias por confirmar!</p>
-        </div>
-      </div>
-    </section>
+            <div class="countdown__item">
+                <span class="countdown__number" id="cdHours">00</span>
+                <span class="countdown__label">Horas</span>
+            </div>
+            <div class="countdown__item">
+                <span class="countdown__number" id="cdMins">00</span>
+                <span class="countdown__label">Minutos</span>
+            </div>
+            <div class="countdown__item">
+                <span class="countdown__number" id="cdSecs">00</span>
+                <span class="countdown__label">Segundos</span>
+            </div>
+        </section>
 
-    <!-- DATOS DE INTERÉS -->
-    <section class="info" id="datos">
-      <h2 class="section-title script anim" data-anim="fadeInUp">datos de interés</h2>
-      <div class="info__grid anim" data-anim="fadeInUp">
-        <!-- Dress Code -->
-        <div class="info__col">
-          <p class="info__heading">Dress code:</p>
-          <p class="info__subheading">Elegante formal</p>
-          <div class="info__icon">
-            <svg viewBox="0 0 64 80" width="40" height="50">
-              <path d="M24 10 L24 30 Q24 50 20 60 L44 60 Q40 50 40 30 L40 10 Q36 14 32 14 Q28 14 24 10Z" fill="none"
-                stroke="currentColor" stroke-width="1.5" />
-              <line x1="32" y1="60" x2="32" y2="70" stroke="currentColor" stroke-width="1.5" />
-              <line x1="26" y1="70" x2="38" y2="70" stroke="currentColor" stroke-width="1.5" />
-            </svg>
-          </div>
-          <p class="info__label">Mujeres:</p>
-          <p class="info__detail">Vestido largo y tacones.</p>
-          <a href="#" class="info__link">Mira inspiración</a>
+        <!-- EL DÍA / TIMELINE -->
+        <section class="timeline" id="eldia">
+            <h2 class="section-title script anim" data-anim="fadeInUp">
+                Timeline
+            </h2>
+            <div class="timeline__grid anim" data-anim="fadeInUp">
+                <div class="timeline__event">
+                    <svg class="timeline__icon" viewBox="0 0 64 64">
+                        <path d="M32 8 C32 8 20 18 20 30 C20 38 25 44 32 48 C39 44 44 38 44 30 C44 18 32 8 32 8Z"
+                            fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <line x1="32" y1="48" x2="32" y2="58" stroke="currentColor" stroke-width="1.5" />
+                        <line x1="26" y1="22" x2="32" y2="16" stroke="currentColor" stroke-width="1" />
+                        <line x1="38" y1="22" x2="32" y2="16" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                    <span class="timeline__label">Bienvenida | 13:00 H</span>
+                </div>
+                <div class="timeline__event">
+                    <svg class="timeline__icon" viewBox="0 0 64 64">
+                        <circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="32" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+                    </svg>
+                    <span class="timeline__label">Ceremonia | 14:00 H</span>
+                </div>
+                <div class="timeline__event">
+                    <svg class="timeline__icon" viewBox="0 0 64 64">
+                        <path d="M20 38 L24 20 L32 28 L40 20 L44 38Z" fill="none" stroke="currentColor"
+                            stroke-width="1.5" />
+                        <line x1="18" y1="38" x2="46" y2="38" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="44" cy="14" r="4" fill="currentColor" opacity="0.3" />
+                        <line x1="44" y1="18" x2="44" y2="22" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                    <span class="timeline__label">Cocktail | 15:30 H</span>
+                </div>
+                <div class="timeline__event">
+                    <svg class="timeline__icon" viewBox="0 0 64 64">
+                        <line x1="24" y1="16" x2="24" y2="48" stroke="currentColor" stroke-width="1.5" />
+                        <line x1="32" y1="16" x2="32" y2="48" stroke="currentColor" stroke-width="1.5" />
+                        <line x1="40" y1="16" x2="40" y2="48" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M20 48 Q32 56 44 48" fill="none" stroke="currentColor" stroke-width="1.5" />
+                    </svg>
+                    <span class="timeline__label">Comida | 17:30 H</span>
+                </div>
+                <div class="timeline__event">
+                    <svg class="timeline__icon" viewBox="0 0 64 64">
+                        <path d="M20 44 Q24 28 32 24 Q40 28 44 44" fill="none" stroke="currentColor"
+                            stroke-width="1.5" />
+                        <line x1="32" y1="24" x2="32" y2="16" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="32" cy="14" r="2" fill="currentColor" />
+                        <path d="M24 18 L20 14" stroke="currentColor" stroke-width="1" />
+                        <path d="M40 18 L44 14" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                    <span class="timeline__label">Fiesta | 3:00 H</span>
+                </div>
+            </div>
+        </section>
 
-          <div class="info__icon" style="margin-top:1.5rem;">
-            <svg viewBox="0 0 64 80" width="40" height="50">
-              <path d="M22 10 L22 30 Q22 50 18 60 L46 60 Q42 50 42 30 L42 10 Q38 14 32 14 Q26 14 22 10Z" fill="none"
-                stroke="currentColor" stroke-width="1.5" />
-              <line x1="32" y1="60" x2="32" y2="70" stroke="currentColor" stroke-width="1.5" />
-              <line x1="26" y1="70" x2="38" y2="70" stroke="currentColor" stroke-width="1.5" />
-            </svg>
-          </div>
-          <p class="info__label">Hombres:</p>
-          <p class="info__detail">Traje, camisa de manga larga, corbata o pajarita.</p>
-          <a href="#" class="info__link">Mira inspiración</a>
-        </div>
+        <!-- CÓMO LLEGAR -->
+        <section class="venues" id="comollegar" style="flex-direction: column; align-items: center; gap: 80px">
+            <h2 class="section-title script anim" data-anim="fadeInUp">
+                Cómo llegar
+            </h2>
 
-        <!-- Weather & Parking -->
-        <div class="info__col">
-          <div class="info__icon">
-            <svg viewBox="0 0 64 64" width="48" height="48">
-              <circle cx="32" cy="32" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <line x1="32" y1="12" x2="32" y2="18" stroke="currentColor" stroke-width="1.5" />
-              <line x1="32" y1="46" x2="32" y2="52" stroke="currentColor" stroke-width="1.5" />
-              <line x1="12" y1="32" x2="18" y2="32" stroke="currentColor" stroke-width="1.5" />
-              <line x1="46" y1="32" x2="52" y2="32" stroke="currentColor" stroke-width="1.5" />
-              <line x1="17.9" y1="17.9" x2="22.1" y2="22.1" stroke="currentColor" stroke-width="1.5" />
-              <line x1="41.9" y1="41.9" x2="46.1" y2="46.1" stroke="currentColor" stroke-width="1.5" />
-              <line x1="17.9" y1="46.1" x2="22.1" y2="41.9" stroke="currentColor" stroke-width="1.5" />
-              <line x1="41.9" y1="22.1" x2="46.1" y2="17.9" stroke="currentColor" stroke-width="1.5" />
-            </svg>
-          </div>
-          <p class="info__label">Clima en Mayo:</p>
-          <p class="info__subheading">Max. 24º / Min. 12º</p>
-          <p class="info__detail"><em>Soleado y agradable por el día, por la noche refresca.<br>Contempla llevar abrigo
-              ligero.</em></p>
+            <!-- CEREMONIA -->
+            <div class="venue venue--single venue--reverse">
+                <div class="venue__image-wrap anim" data-anim="fadeInUp">
+                    <img src="assets/images/7-1.png" alt="Iglesia de San Froilán" class="venue__image"
+                        style="max-height: 220px; object-fit: cover" />
+                </div>
+                <div class="venue__details" style="
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 40px;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        ">
+                    <div class="venue__name-wrap" style="text-align: right">
+                        <img src="assets/images/leaf-left-2.png" alt="" class="venue__leaf" aria-hidden="true"
+                            style="top: -20px" />
+                        <h3 class="venue__name script anim" data-anim="fadeInUp">
+                            San Froilán
+                        </h3>
+                    </div>
+                    <div class="venue__info anim" data-anim="fadeInUp" style="
+                                border-left: 1px solid var(--color-border);
+                                padding-left: 40px;
+                            ">
+                        <p class="venue__time">12:00 H</p>
+                        <p class="venue__type">CEREMONIA</p>
+                        <p class="venue__city">
+                            Iglesia de San Froilán<br />Lugo
+                        </p>
+                        <a href="https://www.google.es/maps/place/Iglesia+de+San+Froil%C3%A1n/@43.0139836,-7.56054,17z/data=!3m2!4b1!5s0xd31ce8fc4d12d13:0x33b449d441e482bc!4m6!3m5!1s0xd31ce8fc4c75aa5:0x9481617946317034!8m2!3d43.0139797!4d-7.5579651!16s%2Fg%2F11ckvw2sfg?entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank" rel="noopener" class="btn btn--outline" style="margin-top: 10px">Cómo
+                            llegar</a>
+                    </div>
+                </div>
+            </div>
 
-          <div class="info__icon" style="margin-top:2rem;">
-            <svg viewBox="0 0 64 64" width="48" height="48">
-              <line x1="32" y1="8" x2="32" y2="20" stroke="currentColor" stroke-width="1.5" />
-              <path d="M20 20 L44 20 L44 36 Q44 48 32 56 Q20 48 20 36Z" fill="none" stroke="currentColor"
-                stroke-width="1.5" />
-              <line x1="28" y1="28" x2="36" y2="28" stroke="currentColor" stroke-width="1" />
-            </svg>
-          </div>
-          <p class="info__detail"><em>Suelo apto para tacones.</em></p>
+            <!-- CELEBRACIÓN -->
+            <div class="venue venue--single">
+                <div class="venue__image-wrap anim" data-anim="fadeInUp">
+                    <img src="assets/images/AFERVENZA-ENTORNO2-79.jpg" alt="A Fervenza — Entorno"
+                        class="venue__image" />
+                </div>
+                <div class="venue__details" style="
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 40px;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        ">
+                    <div class="venue__name-wrap" style="text-align: right">
+                        <img src="assets/images/leaf-right-2.png" alt="" class="venue__leaf" aria-hidden="true" style="
+                                    left: auto;
+                                    right: -30px;
+                                    transform: scaleX(-1);
+                                    top: -20px;
+                                " />
+                        <h3 class="venue__name script anim" data-anim="fadeInUp">
+                            A Fervenza
+                        </h3>
+                    </div>
+                    <div class="venue__info anim" data-anim="fadeInUp" style="
+                                border-left: 1px solid var(--color-border);
+                                padding-left: 40px;
+                            ">
+                        <p class="venue__time">14:00 H</p>
+                        <p class="venue__type">CELEBRACIÓN</p>
+                        <p class="venue__city">
+                            A Fervenza Casa Grande<br />O Corgo, Lugo
+                        </p>
+                        <a href="https://www.google.com/maps/place/Fervenza+Casa+Grande+%26+Restaurante/@42.888359,-7.52166,14z/data=!4m9!3m8!1s0xd30347e238205bd:0xe6f9f84b7cbac85f!5m2!4m1!1i2!8m2!3d42.8883751!4d-7.5216375!16s%2Fg%2F1tf726sj?hl=es&entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank" rel="noopener" class="btn btn--outline" style="margin-top: 10px">Cómo
+                            llegar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-          <div class="info__icon" style="margin-top:2rem;">
-            <svg viewBox="0 0 64 64" width="48" height="48">
-              <rect x="16" y="28" width="32" height="16" rx="8" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <circle cx="24" cy="48" r="4" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <circle cx="40" cy="48" r="4" fill="none" stroke="currentColor" stroke-width="1.5" />
-              <line x1="24" y1="44" x2="24" y2="40" stroke="currentColor" stroke-width="1" />
-              <line x1="40" y1="44" x2="40" y2="40" stroke="currentColor" stroke-width="1" />
-            </svg>
-          </div>
-          <p class="info__detail"><em>La finca dispone de <strong>parking</strong> propio dentro del recinto.</em></p>
-        </div>
+        <!-- AUTOBÚS -->
+        <section class="bus" id="autobus">
+            <img src="assets/images/Download_premium_png_of_PNG_Flowers_illustration_botanical_white__by_Aew_about_gypsophila_flowers__water_colored_png__gypsophila_png__gypsophila_png_transparent__and_white_water_fl.png"
+                alt="" class="bus__leaf bus__leaf--left" aria-hidden="true" />
+            <img src="assets/images/asdasda-removebg-preview.png" alt="" class="bus__leaf bus__leaf--right"
+                aria-hidden="true" />
+            <div class="bus__content anim" data-anim="fadeInUp">
+                <h2 class="section-title script light">Autobús</h2>
+                <p class="bus__text">
+                    Si crees que vas a hacer uso del autobús, apúntate en el
+                    formulario de confirmación de asistencia.
+                </p>
+                <p class="bus__text">
+                    Se informará de los horarios y paradas del autobús unas
+                    semanas antes del día de la boda en este mismo espacio.
+                </p>
+            </div>
+        </section>
 
-        <!-- Contact -->
-        <div class="info__col">
-          <div class="info__icon">
-            <svg viewBox="0 0 64 64" width="48" height="48">
-              <path
-                d="M20 44 Q12 36 12 28 Q12 16 24 12 L28 20 L24 26 Q30 34 38 40 L44 36 L52 40 Q48 52 36 52 Q28 52 20 44Z"
-                fill="none" stroke="currentColor" stroke-width="1.5" />
-            </svg>
-          </div>
-          <p class="info__detail"><em>Si quieres prepararnos alguna sorpresa, ¡no lo dejes a la improvisación!</em></p>
-          <p class="info__detail"><em>Mejor contacta con Carmen, nuestra Wedding Planner.<br>Estará encantada de
-              ayudarte a que todo salga perfecto.</em></p>
-          <p class="info__detail"><strong>+34 651 062 083</strong></p>
-        </div>
-      </div>
-    </section>
+        <!-- RSVP -->
+        <section class="rsvp" id="rsvp">
+            <img src="assets/images/jpgdfsdf-removebg-preview.png" alt="" class="rsvp__leaf rsvp__leaf--right"
+                aria-hidden="true" />
+            <img src="assets/images/Download_premium_png_of_PNG_Real_Pressed_a_Gypsophila_flower_blossom_plant__by_Tong_about_gypsophila_png__gypsophila_flowers__gypsophila__cotton_branch__and_gypsophila_flower_leaf_.png"
+                alt="" class="rsvp__leaf rsvp__leaf--left" aria-hidden="true" />
 
-    <!-- THANK YOU / FOOTER -->
-    <section class="thanks" id="gracias">
-      <div class="thanks__content anim" data-anim="fadeInUp">
-        <h2 class="thanks__title script">Os esperamos</h2>
-        <p class="thanks__names">TANIA & SERGIO</p>
-        <img
-          src="assets/images/Download_premium_png_of_PNG_Flowers_illustration_botanical_white__by_Aew_about_gypsophila_flowers__water_colored_png__gypsophila_png__gypsophila_png_transparent__and_white_water_fl.png"
-          alt="" class="thanks__leaf" aria-hidden="true">
-      </div>
-    </section>
+            <div class="rsvp__card anim" data-anim="fadeInUp">
+                <h2 class="rsvp__heading">RSVP</h2>
+                <h3 class="rsvp__title script">Confirma tu asistencia</h3>
+                <div class="rsvp__instructions">
+                    <p><em>Por favor responde correctamente.</em></p>
+                    <p>
+                        <em>Las preguntas son unipersonales excepto cuando
+                            lo indica.</em>
+                    </p>
+                    <p>
+                        <em>Confirma tu asistencia lo antes posible o hasta
+                            el:</em>
+                    </p>
+                    <p><strong>15 de Julio de 2027.</strong></p>
+                    <p><em>Muchas gracias.</em></p>
+                </div>
+                <p class="rsvp__highlight">
+                    Haz «click en Sí» en las preguntas Sí/No para que se
+                    desplieguen todas las preguntas sobre dietas,
+                    intolerancias, acompañante y niños.
+                </p>
 
-    <section class="gift">
-      <div class="gift__content anim" data-anim="fadeInUp">
-        <h2 class="section-title script light">¡Gracias!</h2>
-        <p class="gift__text">Vuestra presencia es nuestro mayor regalo, pero si queréis hacer una aportación este es
-          nuestro número de cuenta.</p>
-        <p class="gift__iban"><strong>ES00 0000 0000 0000 0000 0000</strong></p>
-      </div>
-    </section>
+                <form class="rsvp__form" id="rsvpForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre y Apellidos
+                                <span class="required">*</span></label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellidos" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Confirma asistencia
+                                <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="asistencia" value="si" required />
+                                    Sí, confirmo!</label>
+                                <label class="radio-label"><input type="radio" name="asistencia" value="no" />
+                                    No puedo</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="libro">Libro de firmas</label>
+                        <textarea id="libro" name="libro" placeholder="Si lo deseas, puedes escribirnos un mensaje."
+                            rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--submit">
+                        Enviar
+                    </button>
+                </form>
+                <div class="rsvp__success" id="rsvpSuccess" style="display: none">
+                    <p class="script" style="font-size: 2rem; color: var(--color-primary)">
+                        ¡Gracias por confirmar!
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <footer class="footer">
-      <p class="footer__text">Invitación web creada con ❤️</p>
-    </footer>
-  </main>
+        <!-- DATOS DE INTERÉS -->
+        <section class="info" id="datos">
+            <h2 class="section-title script anim" data-anim="fadeInUp">
+                datos de interés
+            </h2>
+            <div class="info__grid anim" data-anim="fadeInUp">
+                <!-- Dress Code -->
+                <div class="info__col">
+                    <p class="info__heading">Dress code:</p>
+                    <p class="info__subheading">Elegante formal</p>
+                    <div class="info__icon">
+                        <svg viewBox="0 0 64 80" width="40" height="50">
+                            <path d="M24 10 L24 30 Q24 50 20 60 L44 60 Q40 50 40 30 L40 10 Q36 14 32 14 Q28 14 24 10Z"
+                                fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="32" y1="60" x2="32" y2="70" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="26" y1="70" x2="38" y2="70" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <p class="info__label">Mujeres:</p>
+                    <p class="info__detail">Vestido largo y tacones.</p>
+                    <a href="#" class="info__link">Mira inspiración</a>
 
-  <script src="js/main.js"></script>
+                    <div class="info__icon" style="margin-top: 1.5rem">
+                        <svg viewBox="0 0 64 80" width="40" height="50">
+                            <path d="M22 10 L22 30 Q22 50 18 60 L46 60 Q42 50 42 30 L42 10 Q38 14 32 14 Q26 14 22 10Z"
+                                fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="32" y1="60" x2="32" y2="70" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="26" y1="70" x2="38" y2="70" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <p class="info__label">Hombres:</p>
+                    <p class="info__detail">
+                        Traje, camisa de manga larga, corbata o pajarita.
+                    </p>
+                    <a href="#" class="info__link">Mira inspiración</a>
+                </div>
+
+                <!-- Weather & Parking -->
+                <div class="info__col">
+                    <div class="info__icon">
+                        <svg viewBox="0 0 64 64" width="48" height="48">
+                            <circle cx="32" cy="32" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="32" y1="12" x2="32" y2="18" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="32" y1="46" x2="32" y2="52" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="12" y1="32" x2="18" y2="32" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="46" y1="32" x2="52" y2="32" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="17.9" y1="17.9" x2="22.1" y2="22.1" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="41.9" y1="41.9" x2="46.1" y2="46.1" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="17.9" y1="46.1" x2="22.1" y2="41.9" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="41.9" y1="22.1" x2="46.1" y2="17.9" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <p class="info__label">Clima en Mayo:</p>
+                    <p class="info__subheading">Max. 24º / Min. 12º</p>
+                    <p class="info__detail">
+                        <em>Soleado y agradable por el día, por la noche
+                            refresca.<br />Contempla llevar abrigo
+                            ligero.</em>
+                    </p>
+
+                    <div class="info__icon" style="margin-top: 2rem">
+                        <svg viewBox="0 0 64 64" width="48" height="48">
+                            <line x1="32" y1="8" x2="32" y2="20" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M20 20 L44 20 L44 36 Q44 48 32 56 Q20 48 20 36Z" fill="none" stroke="currentColor"
+                                stroke-width="1.5" />
+                            <line x1="28" y1="28" x2="36" y2="28" stroke="currentColor" stroke-width="1" />
+                        </svg>
+                    </div>
+                    <p class="info__detail">
+                        <em>Suelo apto para tacones.</em>
+                    </p>
+
+                    <div class="info__icon" style="margin-top: 2rem">
+                        <svg viewBox="0 0 64 64" width="48" height="48">
+                            <rect x="16" y="28" width="32" height="16" rx="8" fill="none" stroke="currentColor"
+                                stroke-width="1.5" />
+                            <circle cx="24" cy="48" r="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="40" cy="48" r="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <line x1="24" y1="44" x2="24" y2="40" stroke="currentColor" stroke-width="1" />
+                            <line x1="40" y1="44" x2="40" y2="40" stroke="currentColor" stroke-width="1" />
+                        </svg>
+                    </div>
+                    <p class="info__detail">
+                        <em>La finca dispone de
+                            <strong>parking</strong> propio dentro del
+                            recinto.</em>
+                    </p>
+                </div>
+
+                <!-- Contact -->
+                <div class="info__col">
+                    <div class="info__icon">
+                        <svg viewBox="0 0 64 64" width="48" height="48">
+                            <path
+                                d="M20 44 Q12 36 12 28 Q12 16 24 12 L28 20 L24 26 Q30 34 38 40 L44 36 L52 40 Q48 52 36 52 Q28 52 20 44Z"
+                                fill="none" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <p class="info__detail">
+                        <em>Si quieres prepararnos alguna sorpresa, ¡no lo
+                            dejes a la improvisación!</em>
+                    </p>
+                    <p class="info__detail">
+                        <em>Mejor contacta con Carmen, nuestra Wedding
+                            Planner.<br />Estará encantada de ayudarte a que
+                            todo salga perfecto.</em>
+                    </p>
+                    <p class="info__detail">
+                        <strong>+34 651 062 083</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THANK YOU / FOOTER -->
+        <section class="thanks" id="gracias">
+            <div class="thanks__content anim" data-anim="fadeInUp">
+                <h2 class="thanks__title script">Os esperamos</h2>
+                <p class="thanks__names">TANIA & SERGIO</p>
+                <img src="assets/images/Download_premium_png_of_PNG_Flowers_illustration_botanical_white__by_Aew_about_gypsophila_flowers__water_colored_png__gypsophila_png__gypsophila_png_transparent__and_white_water_fl.png"
+                    alt="" class="thanks__leaf" aria-hidden="true" />
+            </div>
+        </section>
+
+        <section class="gift">
+            <div class="gift__content anim" data-anim="fadeInUp">
+                <h2 class="section-title script light">¡Gracias!</h2>
+                <p class="gift__text">
+                    Vuestra presencia es nuestro mayor regalo, pero si
+                    queréis hacer una aportación este es nuestro número de
+                    cuenta.
+                </p>
+                <p class="gift__iban">
+                    <strong>ES00 0000 0000 0000 0000 0000</strong>
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p class="footer__text">Invitación web creada con ❤️</p>
+        </footer>
+    </main>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>
