@@ -32,24 +32,30 @@ document.addEventListener("DOMContentLoaded", () => {
   enterBtn.addEventListener("click", (e) => {
     e.stopPropagation(); // don't re-trigger envelope click
 
-    splash.classList.add("hidden");
-    navbar.classList.add("visible");
-    musicToggle.classList.add("visible");
+    // Add 'entered' class to trigger the zoom-in CSS animation on the letter/envelope
+    envelopeWrapper.classList.add("entered");
 
-    // Scroll to Hero section
-    const hero = document.getElementById("INICIO");
-    if (hero) hero.scrollIntoView({ behavior: "smooth" });
-
-    // Attempt to play music
-    bgMusic.play().catch(() => {
-      iconPause.style.display = "none";
-      iconPlay.style.display = "block";
-    });
-
-    // Remove splash from DOM after transitions complete
+    // Wait for the zoom animation to happen (e.g., 800ms) before fading out the splash
     setTimeout(() => {
-      splash.style.display = "none";
-    }, 1200);
+      splash.classList.add("hidden");
+      navbar.classList.add("visible");
+      musicToggle.classList.add("visible");
+
+      // Scroll to Hero section
+      const hero = document.getElementById("INICIO");
+      if (hero) hero.scrollIntoView({ behavior: "smooth" });
+
+      // Attempt to play music
+      bgMusic.play().catch(() => {
+        iconPause.style.display = "none";
+        iconPlay.style.display = "block";
+      });
+
+      // Remove splash from DOM after transitions complete
+      setTimeout(() => {
+        splash.style.display = "none";
+      }, 1200);
+    }, 200);
   });
 
   /* ================================================

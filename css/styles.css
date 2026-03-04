@@ -146,6 +146,7 @@ button {
 .envelope-wrapper.opened .envelope__prompt {
     opacity: 0;
     pointer-events: none;
+    animation: none;
 }
 
 @keyframes promptFade {
@@ -173,6 +174,13 @@ button {
 .envelope-wrapper.opened .envelope {
     animation: none;
     cursor: default;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+/* When ENTRAR is clicked, zoom into the whole envelope */
+.envelope-wrapper.entered .envelope {
+    transform: scale(2.5) translateY(50px);
+    opacity: 0;
 }
 
 @keyframes envelopeShake {
@@ -403,6 +411,12 @@ button {
 .envelope-wrapper.opened .envelope__letter-inner {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* When ENTRAR is clicked, the letter contents fade out quickly */
+.envelope-wrapper.entered .envelope__letter-inner {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 /* --- Text styles --- */
@@ -917,7 +931,7 @@ button {
     position: absolute;
     width: clamp(130px, 17vw, 250px);
     pointer-events: none;
-    opacity: 0.95;
+    opacity: 0.75;
     mix-blend-mode: luminosity;
     filter: brightness(0.7);
 }
