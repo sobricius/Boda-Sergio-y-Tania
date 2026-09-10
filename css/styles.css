@@ -790,6 +790,11 @@ button {
     flex-shrink: 0;
 }
 
+.timeline__icon--wide {
+    width: 64px;
+    height: auto;
+}
+
 .timeline__label {
     font-family: var(--ff-serif);
     font-size: 1rem;
