@@ -336,9 +336,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- Solo visible/obligatorio si se confirma asistencia (ver js/main.js) -->
+                    <div class="form-group" id="grupoAutobus" hidden>
                         <label>¿Irás en autobús desde la iglesia hasta el
-                            restaurante?</label>
+                            restaurante? <span class="required">*</span></label>
                         <div class="radio-group">
                             <label class="radio-label"><input type="radio" name="autobus" value="si" />
                                 Sí, iré en autobús</label>

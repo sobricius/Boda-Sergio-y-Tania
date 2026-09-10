@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.getElementById("navMenu");
   const rsvpForm = document.getElementById("rsvpForm");
   const rsvpSuccess = document.getElementById("rsvpSuccess");
+  const grupoAutobus = document.getElementById("grupoAutobus");
 
   /* ================================================
        1. SPLASH SCREEN — ENVELOPE ANIMATION
@@ -166,6 +167,21 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ================================================
        7. RSVP FORM
        ================================================ */
+
+  // La pregunta del autobús solo se muestra (y es obligatoria) si se confirma asistencia
+  const asistenciaInputs = rsvpForm.querySelectorAll('input[name="asistencia"]');
+
+  function toggleAutobus() {
+    const confirma = rsvpForm.querySelector('input[name="asistencia"]:checked')?.value === "si";
+    grupoAutobus.hidden = !confirma;
+    if (!confirma) {
+      // Limpiar selección y error de validación al ocultar
+      grupoAutobus.querySelectorAll("input").forEach((r) => (r.checked = false));
+    }
+  }
+
+  asistenciaInputs.forEach((input) => input.addEventListener("change", toggleAutobus));
+
   rsvpForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -177,6 +193,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formData = new FormData(rsvpForm);
     const data = Object.fromEntries(formData.entries());
+
+    // Si no confirma asistencia, no enviar la pregunta del autobús
+    if (data.asistencia !== "si") delete data.autobus;
+
     data.timestamp = new Date().toISOString();
 
     // Google Apps Script Web App URL
